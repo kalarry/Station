@@ -3,9 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # 网页标题和说明
-st.title("📡 测向交叉定位：误差包络模拟器")
-st.markdown("通过调整下方滑块，实时观察**工程典型误差**对最终定位精度的影响范围（红色阴影区域）。")
-st.markdown("此版本**仅显示误差边界线**及其对应的角度。")
+st.title("测向交叉定位：±3°测向误差")
 
 # 侧边栏：放置交互滑块
 st.sidebar.header("控制面板")
