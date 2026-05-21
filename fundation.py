@@ -6,35 +6,6 @@ import numpy as np
 st.set_page_config(page_title="基础层：定位原理", layout="centered")
 st.title("基础层项目：定位原理达标训练")
 
-# --- 第一部分：已知条件与数学方程推导 ---
-st.header("一、 项目任务与方程建立")
-
-col1, col2 = st.columns(2)
-with col1:
-    st.markdown("""
-    **已知条件：**
-    * 侦察站 A：坐标 $(200, 100)$ m，测向角 $\\theta_1 = 45^\\circ$
-    * 侦察站 B：坐标 $(500, 100)$ m，测向角 $\\theta_2 = 135^\\circ$
-    """)
-
-with col2:
-    st.markdown("**定位原理要求：**\n1. 绘制测向交叉定位几何图\n2. 建立两条位置线方程")
-
-st.markdown("---")
-st.markdown("### 📐 位置线方程推导 (要求 2)")
-st.markdown("根据点斜式直线方程 $y - y_0 = \\tan(\\theta)(x - x_0)$，我们可以建立如下方程组：")
-
-# 使用 LaTeX 渲染标准数学公式，非常适合学术和教学展示
-st.latex(r"\text{侦察站 A 位置线: } y - 100 = \tan(45^\circ)(x - 200) \implies y = x - 100")
-st.latex(r"\text{侦察站 B 位置线: } y - 100 = \tan(135^\circ)(x - 500) \implies y = -x + 600")
-
-st.markdown("联立上述方程，解得绝对理想定位点坐标为：**(350, 250)**")
-
-
-# --- 第二部分：几何可视化 ---
-st.markdown("---")
-st.markdown("### 🗺️ 测向交叉定位几何图 (要求 1)")
-
 # 初始化画布
 fig, ax = plt.subplots(figsize=(8, 6))
 
