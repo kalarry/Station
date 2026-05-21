@@ -65,4 +65,44 @@ ax.plot(500, 100, 'bs', markersize=8, label='侦察站 B (500, 100)')
 # 计算并绘制理想定位点
 ex, ey = calc_intersection(200, 100, t1, 500, 100, t2)
 if ex is not None:
-    ax.plot(ex, ey, 'k*', markersize=
+    ax.plot(ex, ey, 'k*', markersize=10, label=f'理想点 ({ex:.1f}, {ey:.1f})')
+
+# 计算四种误差组合并绘制包络区域及边界线
+err_A_angles = [t1 + delta, t1 - delta]
+err_B_angles = [t2 + delta, t2 - delta]
+
+# 绘制 A 站的误差射线及优化的角度标注
+for angle in err_A_angles:
+    plot_ray(ax, 200, 100, angle, 'black', ':', linewidth=1.5, label=f'A 边界: {angle:.1f}°')
+    annotate_angle_offset(ax, 200, 100, angle, t1, 'black')
+
+# 绘制 B 站的误差射线及优化的角度标注
+for angle in err_B_angles:
+    plot_ray(ax, 500, 100, angle, 'blue', ':', linewidth=1.5, label=f'B 边界: {angle:.1f}°')
+    annotate_angle_offset(ax, 500, 100, angle, t2, 'blue')
+
+# 计算四个交点并绘制模糊区域
+combinations = [
+    (t1 + delta, t2 + delta),
+    (t1 + delta, t2 - delta),
+    (t1 - delta, t2 - delta),
+    (t1 - delta, t2 + delta)
+]
+
+poly_x, poly_y = [], []
+for ea, eb in combinations:
+    px, py = calc_intersection(200, 100, ea, 500, 100, eb)
+    if px is not None:
+        poly_x.append(px)
+        poly_y.append(py)
+
+# 绘制填充区域和顶点
+if len(poly_x) == 4:
+    ax.fill(poly_x, poly_y, color='red', alpha=0.25, label=f'±{delta}° 误差包络区域')
+    for px, py in zip(poly_x, poly_y):
+        ax.plot(px, py, 'ro', markersize=5)
+
+ax.legend(loc='upper right', fontsize=9)
+
+# 将 matplotlib 图表渲染到 Streamlit 网页中
+st.pyplot(fig)
