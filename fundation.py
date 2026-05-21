@@ -32,7 +32,7 @@ y_val_B = By + length * np.sin(np.radians(angleB))
 ax.plot([Bx, x_val_B], [By, y_val_B], 'b-', linewidth=2, label=f'B站位置线 ($\\theta_2=135^\\circ$)')
 
 # 3. 绘制理想交点
-ax.plot(350, 250, 'r*', markersize=20, label='理想定位点 E (350, 250)')
+ax.plot(350, 250, 'r*', markersize=10, label='理想定位点 E (350, 250)')
 # 添加坐标文本注释
 ax.annotate('E (350, 250)', xy=(350, 250), xytext=(10, 10), textcoords='offset points', color='red', fontsize=12, fontweight='bold')
 
